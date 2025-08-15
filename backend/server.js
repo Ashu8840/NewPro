@@ -13,8 +13,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-// You may need to update this URL to where your frontend is running
-const FRONTEND_URL = 'http://localhost:8000'; 
+const FRONTEND_URL = 'https://auth-sgtl.onrender.com'; 
 
 // --- Middleware ---
 app.use(cors({

@@ -9,7 +9,7 @@ export const GoogleButton: React.FC<GoogleButtonProps> = ({ text }) => {
     
   const handleGoogleLogin = () => {
     // Redirects to the backend route that starts the Google OAuth flow
-    window.location.href = 'http://localhost:5000/api/auth/google';
+    window.location.href = 'https://auth-sgtl.onrender.com/api/auth/google';
   };
 
   return (
