@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { GoogleIcon } from './icons';
 
@@ -9,8 +8,8 @@ interface GoogleButtonProps {
 export const GoogleButton: React.FC<GoogleButtonProps> = ({ text }) => {
     
   const handleGoogleLogin = () => {
-    // In a real app, you would initiate the Google OAuth flow here.
-    alert('Google login functionality not implemented.');
+    // Redirects to the backend route that starts the Google OAuth flow
+    window.location.href = 'https://auth-sgtl.onrender.com/api/auth/google';
   };
 
   return (

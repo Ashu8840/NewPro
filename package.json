@@ -1,5 +1,5 @@
 {
-  "name": "copy-of-modern-authentication-ui",
+  "name": "modern-authentication-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,10 +17,10 @@
     "dotenv": "^17.2.1",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "bcryptjs": "^3.0.2",
-    "express-session": "^1.18.2",
-    "passport-local": "^1.0.0"
+    "express-session": "^1.18.2"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

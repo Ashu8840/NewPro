@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { InputField } from './InputField';
 import { GoogleButton } from './GoogleButton';
 import { LogoIcon } from './icons';
@@ -9,11 +8,29 @@ interface LoginPageProps {
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ onToggleView }) => {
-    
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In a real app, you'd handle form submission here.
-    alert('Login functionality not implemented.');
+    setError('');
+    try {
+      const response = await fetch('https://auth-sgtl.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to login');
+      }
+      // In a real app, you would store the token and manage auth state.
+      console.log('Login successful, token:', data.token);
+      alert('Login successful!');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred.');
+    }
   };
 
   return (
@@ -24,8 +41,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onToggleView }) => {
         <p className="text-slate-400">Please enter your details to login</p>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <InputField id="login-email" label="Email" type="email" placeholder="you@example.com" />
-        <InputField id="login-password" label="Password" type="password" placeholder="••••••••" />
+        {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+        <InputField id="login-email" label="Email" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} />
+        <InputField id="login-password" label="Password" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
         <div className="text-right">
           <a href="#" className="text-sm text-indigo-400 hover:underline">Forgot Password?</a>
         </div>

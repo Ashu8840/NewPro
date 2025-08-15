@@ -1,5 +1,5 @@
 {
-  "name": "Copy of Modern Authentication UI",
+  "name": "Modern Authentication UI",
   "description": "A visually appealing and functional login and sign-up page built with React and Tailwind CSS, featuring a clean interface and an option for Google authentication.",
   "requestFramePermissions": []
 }

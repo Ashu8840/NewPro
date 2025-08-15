@@ -1,10 +1,22 @@
-
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 
 const App: React.FC = () => {
   const [isLoginView, setIsLoginView] = useState(true);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    if (token) {
+      // In a real app, you'd store this token securely (e.g., localStorage)
+      // and update the application state to reflect that the user is logged in.
+      alert('Successfully logged in with Google!');
+      console.log('Received token:', token);
+      // Clean the token from the URL for a better user experience
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
 
   const toggleView = useCallback(() => {
     setIsLoginView(prev => !prev);
@@ -15,10 +27,6 @@ const App: React.FC = () => {
       <div className="w-full max-w-md">
         {isLoginView ? <LoginPage onToggleView={toggleView} /> : <SignUpPage onToggleView={toggleView} />}
       </div>
-       <footer className="text-center mt-8 text-slate-500 text-sm">
-        <p>This is a frontend-only demonstration. No real authentication is performed.</p>
-        <p>Credentials and backend logic are not implemented.</p>
-      </footer>
     </div>
   );
 };
