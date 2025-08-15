@@ -13,11 +13,10 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const FRONTEND_URL = 'https://auth-sgtl.onrender.com'; 
 
 // --- Middleware ---
 app.use(cors({
-    origin: FRONTEND_URL,
+    origin:"*",
     credentials: true,
 }));
 app.use(express.json());
